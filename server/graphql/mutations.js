@@ -8,12 +8,46 @@ const {
     GraphQLNonNull
 } = require("graphql");
 
-const { EventType } = require("./types");
+const { StageType, EventType } = require("./types");
 
 // mutations
 const mutations = new GraphQLObjectType({
     name: "Mutation",
     fields: {
+        // Stage Mutations
+        addStage: {
+            type: StageType,
+            args: {
+                name: { type: new GraphQLNonNull(GraphQLString) }
+            },
+            resolve(parentValue, args) {
+                return axios.post("http://localhost:3000/stages", {
+                    name: args.name
+                }).then(res => res.data);
+            }
+        },
+        removeStage: {
+            type: StageType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLString) }
+            },
+            resolve(parentValue, args) {
+                return axios.delete("http://localhost:3000/stages/" + args.id)
+                .then(res => res.data);
+            }
+        },
+        editStage: {
+            type: StageType,
+            args: { 
+                id: { type: new GraphQLNonNull(GraphQLString) },
+                name: { type: GraphQLString }
+            },
+            resolve(parentValue, args) {
+                return axios.patch("http://localhost:3000/stages/" + args.id, args)
+                .then(res => res.data);
+            }
+        },
+        // Event Mutations
         addEvent: {
             type: EventType,
             args: {
@@ -65,6 +99,6 @@ const mutations = new GraphQLObjectType({
             }
         },
     }
-});
+}); 
 
 module.exports = mutations;

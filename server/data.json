@@ -17,6 +17,10 @@
     {
       "id": "a6bb97dc-224c-4f8f-9af7-fd8b5731840f",
       "name": "Fo’shizzle Stage"
+    },
+    {
+      "name": "Edited Test stage",
+      "id": "bnsVU7-"
     }
   ],
   "events": [
@@ -69,16 +73,6 @@
       "image": "http://assets.aloompa.com.s3.amazonaws.com/rappers/JCole.jpeg",
       "startsAt": 1577923200,
       "endsAt": 1577930400
-    },
-    {
-      "appId": "asd1",
-      "stageId": "asd1",
-      "name": "test to see if it changes",
-      "description": "yessir",
-      "image": "null",
-      "startsAt": 123123,
-      "endsAt": 124424,
-      "id": "7aJMu8S"
     }
   ]
 }
