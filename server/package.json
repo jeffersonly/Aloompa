@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev-server": "nodemon server.js",
-    "json-server": "json-server --watch data.json",
+    "json-server": "json-server -p 8000 --watch data.json",
     "backend": "concurrently \"npm run dev-server\"  \"npm run json-server\""
   },
   "author": "Jefferson Ly",
