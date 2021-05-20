@@ -1,0 +1,25 @@
+{
+  "name": "aloompa-challenge",
+  "version": "1.0.0",
+  "description": "Backend server runs on port 4000\r Json Server runs on port 3000 (acts as api/db)\r # Technologies Used\r - Axios\r - Concurrently\r - Cors\r - Express\r - Express-graphql\r - GraphQL\r - Json-Server: Used to simulate a backend REST API for prototyping/mocking\r - Nodemon",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-client": "cd client && npm install",
+    "install-server": "cd server && npm install",
+    "install-all": "concurrently \"npm run install-server\"  \"npm run install-client\"",
+    "run-frontend": "cd client && npm run start",
+    "run-backend": "cd server && npm run backend",
+    "run-all-dev": "concurrently \"npm run run-backend\" \"npm run run-frontend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffersonly/Aloompa.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeffersonly/Aloompa/issues"
+  },
+  "homepage": "https://github.com/jeffersonly/Aloompa#readme"
+}

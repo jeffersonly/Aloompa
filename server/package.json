@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev-server": "nodemon server.js",
-    "json-server": "json-server --watch data.json",
+    "json-server": "json-server -p 8000 --watch data.json",
     "backend": "concurrently \"npm run dev-server\"  \"npm run json-server\""
   },
   "author": "Jefferson Ly",
@@ -14,6 +14,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "concurrently": "^6.1.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-graphql": "^0.12.0",
     "graphql": "^15.5.0",

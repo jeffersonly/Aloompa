@@ -18,7 +18,7 @@ const RootQuery = new GraphQLObjectType({
         get_all_apps: { // get all apps
             type: new GraphQLList(AppType),
             resolve() {
-                return axios.get("http://localhost:3000/apps/")
+                return axios.get("http://localhost:8000/apps/")
                 .then(res => res.data);
             }
         },
@@ -28,7 +28,7 @@ const RootQuery = new GraphQLObjectType({
                 id: { type: GraphQLString }
             },
             resolve(parentValue, args) { 
-                return axios.get("http://localhost:3000/apps/" + args.id)
+                return axios.get("http://localhost:8000/apps/" + args.id)
                 .then(res => res.data);
             }
         },
@@ -36,7 +36,7 @@ const RootQuery = new GraphQLObjectType({
         get_all_stages: { // get all stages
             type: new GraphQLList(StageType),
             resolve() {
-                return axios.get("http://localhost:3000/stages/")
+                return axios.get("http://localhost:8000/stages/")
                 .then(res => res.data);
             }
         },
@@ -46,7 +46,7 @@ const RootQuery = new GraphQLObjectType({
                 id: { type: GraphQLString }
             },
             resolve(parentValue, args) { 
-                return axios.get("http://localhost:3000/stages/" + args.id)
+                return axios.get("http://localhost:8000/stages/" + args.id)
                 .then(res => res.data);
             }
         },
@@ -56,7 +56,7 @@ const RootQuery = new GraphQLObjectType({
                 name: { type: GraphQLString }
             },
             resolve(parentValue, args) {
-                return axios.get("http://localhost:3000/stages/")
+                return axios.get("http://localhost:8000/stages/")
                 .then(res => { 
                     return res.data.filter(objs => objs.name.toLowerCase().startsWith(args.name.toLowerCase()));
                 });
@@ -66,7 +66,7 @@ const RootQuery = new GraphQLObjectType({
         get_all_events: { // get all events
             type: new GraphQLList(EventType),
             resolve() {
-                return axios.get("http://localhost:3000/events/")
+                return axios.get("http://localhost:8000/events/")
                 .then(res => res.data);
             }
         },
@@ -77,7 +77,7 @@ const RootQuery = new GraphQLObjectType({
             },
             resolve(parentValue, args) {
                 // get data for a specific event
-                return axios.get("http://localhost:3000/events/" + args.id)
+                return axios.get("http://localhost:8000/events/" + args.id)
                 .then(res => res.data);
             }
         }, 
@@ -87,7 +87,7 @@ const RootQuery = new GraphQLObjectType({
                 name: { type: GraphQLString }
             },
             resolve(parentValue, args) {
-                return axios.get("http://localhost:3000/events/")
+                return axios.get("http://localhost:8000/events/")
                 .then(res => { 
                     return res.data.filter(objs => objs.name.toLowerCase().startsWith(args.name.toLowerCase()));
                 });
@@ -100,7 +100,7 @@ const RootQuery = new GraphQLObjectType({
                 endsAt: { type: GraphQLInt }
             },
             resolve(parentValue, args) {
-                return axios.get("http://localhost:3000/events/")
+                return axios.get("http://localhost:8000/events/")
                 .then(res => { 
                     return res.data.filter(objs => args.startsAt <= objs.startsAt && objs.endsAt <= args.endsAt);
                 });
@@ -112,7 +112,7 @@ const RootQuery = new GraphQLObjectType({
                 appId: { type: GraphQLString }
             },
             resolve(parentValue, args) {
-                return axios.get("http://localhost:3000/events/")
+                return axios.get("http://localhost:8000/events/")
                 .then(res => { 
                     return res.data.filter(objs => args.appId === objs.appId);
                 });
@@ -124,7 +124,7 @@ const RootQuery = new GraphQLObjectType({
                 appId: { type: GraphQLString }
             },
             resolve(parentValue, args) {
-                return axios.get("http://localhost:3000/events/")
+                return axios.get("http://localhost:8000/events/")
                 .then(res => {
                     // get all events in a app and their stage ids, make list of the stage ids
                     let listOfEventsInApp = res.data.filter(objs => args.appId === objs.appId);
@@ -139,7 +139,7 @@ const RootQuery = new GraphQLObjectType({
                     }
 
                     // get all stages, filter stages in correlation to the list above
-                    return axios.get("http://localhost:3000/stages/")
+                    return axios.get("http://localhost:8000/stages/")
                     .then(res2 => {
                         return res2.data.filter(objs => uniqueListOfStageIDs.includes(objs.id));
                     });
@@ -153,9 +153,9 @@ const RootQuery = new GraphQLObjectType({
             },
             resolve(parentValue, args) {
                 // get data for a specific event
-                return axios.get("http://localhost:3000/events/" + args.id)
+                return axios.get("http://localhost:8000/events/" + args.id)
                 .then(res => {
-                    return axios.get("http://localhost:3000/stages/" + res.data.stageId)
+                    return axios.get("http://localhost:8000/stages/" + res.data.stageId)
                     .then(res => res.data);
                 });
             }
@@ -167,7 +167,7 @@ const RootQuery = new GraphQLObjectType({
             },
             resolve(parentValue, args) {
                 // get all events
-                return axios.get("http://localhost:3000/events/")
+                return axios.get("http://localhost:8000/events/")
                 .then(res => {
                     return res.data.filter(objs => args.id === objs.stageId);
                 });
